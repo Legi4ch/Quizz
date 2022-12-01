@@ -63,7 +63,7 @@ class QuizzScreen : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         questionText = binding.questionTextView
         progressText = binding.progressText
-        binding.radioGroup.setOnCheckedChangeListener { _, id -> checkRadioStatus()}
+        binding.radioGroup.setOnCheckedChangeListener { _, _ -> checkRadioStatus()}
         binding.nextButton.setOnClickListener { next() }
         binding.backButton.setOnClickListener{ back() }
    }
@@ -113,9 +113,9 @@ class QuizzScreen : Fragment() {
     }
 
     private fun getRadioIndex(): Int {
-        val checked:Int = binding.radioGroup.getCheckedRadioButtonId()
+        val checked:Int = binding.radioGroup.checkedRadioButtonId
         if (checked > -1) {
-            val elem = getView()?.findViewById<RadioButton>(checked)
+            val elem = view?.findViewById<RadioButton>(checked)
             return binding.radioGroup.indexOfChild(elem)
         }
         else return -1
