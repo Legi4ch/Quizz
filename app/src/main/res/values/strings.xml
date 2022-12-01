@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Quizz</string>
+    <string name="buttonBack">Назад</string>
+    <string name="buttonNext">Вперед</string>
+    <string name="progressPlaceHolder">1/10</string>
+    <string name="share_btn_text">Рассказать</string>
+    <string name="again_btn_text">Заново</string>
+    <string name="exit_btn_text">Выход</string>
+    <string name="total_text">Ваш результат</string>
+    <string name="share_text">Мой результат в Android Quizz</string>
+
+
+
+    <string name="answer_is_exists">Вы уже ответили на этот вопрос!</string>
+    <string name="is_first_question">Это самый первый вопрос!</string>
+    <string name="need_answer">Сначала ответьте на этот вопрос!</string>
+
+
+
+</resources>

@@ -1,0 +1,265 @@
+[{
+  "id": 0,
+  "Question": "Как называлась первая версия Android?",
+  "Answers": [{
+    "id": 0,
+    "text": "Aplha",
+    "valid": false
+  },
+    {
+      "id": 1,
+      "text": "Andrey",
+      "valid": false
+    },
+    {
+      "id": 2,
+      "text": "Astra boy",
+      "valid": true
+    },
+    {
+      "id": 3,
+      "text": "Alpen",
+      "valid": false
+    }
+  ]
+},
+
+  {
+    "id": 1,
+    "Question": "В какой версии Android появились runtime permissions?",
+    "Answers": [{
+      "id": 0,
+      "text": "Lolipop",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "Marshmallow",
+        "valid": true
+      },
+      {
+        "id": 2,
+        "text": "Nougat",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "KitKat",
+        "valid": false
+      }
+
+    ]
+  },
+
+  {
+    "id": 2,
+    "Question": "Какой метод жизненного цикла View вызывается раньше остальных?",
+    "Answers": [{
+      "id": 0,
+      "text": "measure()",
+      "valid": true
+    },
+      {
+        "id": 1,
+        "text": "onMeasure",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "onLayout",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "onDraw",
+        "valid": false
+      }
+
+    ]
+  },
+
+  {
+    "id": 3,
+    "Question": "Какого метода нет в Android SDK?",
+    "Answers": [{
+      "id": 0,
+      "text": "isMonkeyUser",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "isUserAGoat",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "isFinalCountDown",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "isUserSmell",
+        "valid": true
+      }
+
+    ]
+  },
+
+  {
+    "id": 4,
+    "Question": "Какого density на Android не существует?",
+    "Answers": [{
+      "id": 0,
+      "text": "xhdpi",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "tvdpi",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "mdpi",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "sdpi",
+        "valid": true
+      }
+
+    ]
+  },
+  {
+    "id": 5,
+    "Question": "Выберите среду выполнения Android, пришедшую на смену Dalvik?",
+    "Answers": [{
+      "id": 0,
+      "text": "ART",
+      "valid": true
+    },
+      {
+        "id": 1,
+        "text": "Dalvik 2.0",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "Dalvik Next",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "ARM",
+        "valid": false
+      }
+
+    ]
+  },
+  {
+    "id": 6,
+    "Question": "Что в Android скрывается под аббревиатурой ANR?",
+    "Answers": [{
+      "id": 0,
+      "text": "ANdRoid",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "Application Not Responding",
+        "valid": true
+      },
+      {
+        "id": 2,
+        "text": "Android Not Running",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "Active Noise Reduction",
+        "valid": false
+      }
+
+    ]
+  },
+  {
+    "id": 7,
+    "Question": "Какую инофрмацию для View содержит в себе MeasureSpec",
+    "Answers": [{
+      "id": 0,
+      "text": "Size & Mode",
+      "valid": true
+    },
+      {
+        "id": 1,
+        "text": "Size & View translation",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "Parent ViewGroup ID",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "View Bound: left, top, right, bottom",
+        "valid": false
+      }
+
+    ]
+  },
+  {
+    "id": 8,
+    "Question": "На каком уровне архитектуры Android располагается Binder (IPC) Driver",
+    "Answers": [{
+      "id": 0,
+      "text": "Libraries",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "Linux Kernel",
+        "valid": true
+      },
+      {
+        "id": 2,
+        "text": "Application Framework",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "Applications",
+        "valid": false
+      }
+
+    ]
+  },
+  {
+    "id": 9,
+    "Question": "Какой инструкции нет в Dalvik VM",
+    "Answers": [{
+      "id": 0,
+      "text": "goto",
+      "valid": false
+    },
+      {
+        "id": 1,
+        "text": "InvokeInterface",
+        "valid": false
+      },
+      {
+        "id": 2,
+        "text": "Invokestatic",
+        "valid": false
+      },
+      {
+        "id": 3,
+        "text": "Invokeabstract",
+        "valid": true
+      }
+
+    ]
+  }
+
+]
