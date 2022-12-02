@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ru.fastly.quizz.databinding.FragmentResultScreenBinding
-import ru.fastly.quizz.providers.DataProvider
 import ru.fastly.quizz.utils.App
 import ru.fastly.quizz.utils.Utils
 import kotlin.system.exitProcess
@@ -57,9 +56,8 @@ class ResultFragmentScreen : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val myData = DataProvider(App.getContext())
         binding.resultTextView.text = rightCount.toString()
-        binding.commentTextView.text = Utils.getScores(rightCount, myData.getDataCount())
+        binding.commentTextView.text = Utils.getScores(rightCount, App.dataset.getDataCount())
         binding.shareButton.setOnClickListener{
             share()
         }
@@ -72,9 +70,9 @@ class ResultFragmentScreen : Fragment() {
     }
 
     private fun share() {
-        val myData = DataProvider(App.getContext())
-        var result:String = rightCount.toString() + " / " + myData.getDataCount() + Utils.getScores(rightCount, myData.getDataCount())
-        result += resources.getText(R.string.share_text)
+        val quizzCount = App.dataset.getDataCount()
+        var result:String = rightCount.toString() + "/" + quizzCount.toString() + " " + Utils.getScores(rightCount, quizzCount)
+        result += " " + resources.getText(R.string.share_text)
         val intent = Intent(Intent.ACTION_SEND)
         intent.type = "text/plain"
         intent.putExtra(Intent.EXTRA_TEXT, result)

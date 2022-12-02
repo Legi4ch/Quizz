@@ -12,9 +12,8 @@ import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import ru.fastly.quizz.databinding.FragmentQuizzScreenBinding
-import ru.fastly.quizz.providers.DataProvider
-import ru.fastly.quizz.utils.App
 import ru.fastly.quizz.view_models.QuizzViewModel
+
 
 
 class QuizzScreen : Fragment() {
@@ -27,6 +26,8 @@ class QuizzScreen : Fragment() {
     private val binding get() = _binding!!
     private lateinit var provider: ViewModelProvider
     private val model get() = provider.get(QuizzViewModel::class.java)
+
+
     private lateinit var questionText: TextView
     private lateinit var progressText: TextView
     private lateinit var listener: OnFragmentCallAction
@@ -56,7 +57,7 @@ class QuizzScreen : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        setup(model.currentIndex)
+        setup(model.getCurrentStep())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -69,49 +70,34 @@ class QuizzScreen : Fragment() {
    }
 
     private fun next() {
-        val myData = DataProvider(App.getContext())
-        if (isVisited()) {
+        if (model.isVisited()) {
             //ответ не требуется, уже был просмотр и соответственно ответ
-            model.currentIndex++
-            setup(model.currentIndex)
-        } else if (model.currentIndex+1 < myData.getDataCount() && getRadioIndex() != -1) {
-            setAnswer(getRadioIndex()) //пишем ответ
-            model.currentIndex++
-            setup(model.currentIndex)
-        } else if (model.currentIndex+1 == myData.getDataCount() && getRadioIndex() != -1) {
-            setAnswer(getRadioIndex()) //пишем ответ
-            // теперь надо показать результирующий фрагмент со всеми свистоперделками
+            model.stepForward()
+            setup(model.getCurrentStep())
+        } else if (!model.isLastQuestion() && getRadioIndex() != -1) {
+            model.setAnswer(getRadioIndex())
+            model.stepForward()
+            setup(model.getCurrentStep())
+        } else if (model.isLastQuestion() && getRadioIndex() != -1) {
+            model.setAnswer(getRadioIndex())
+            // теперь надо показать результирующий фрагмент со всеми свистоперделками и сбрасываем квиз
             showResult()
             resetQuizz()
         } else {
-            Toast.makeText(App.getContext(),resources.getText(R.string.need_answer)  , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context,resources.getText(R.string.need_answer)  , Toast.LENGTH_SHORT).show()
         }
     }
 
     private fun back() {
-        if (model.currentIndex > 0) {
-            model.currentIndex--
-            setup(model.currentIndex)
+        if (model.getCurrentStep() > 0) {
+            model.stepBackward()
+            setup(model.getCurrentStep())
         } else {
-            Toast.makeText(App.getContext(),resources.getText(R.string.is_first_question)  , Toast.LENGTH_SHORT).show()
+            Toast.makeText(this.context,resources.getText(R.string.is_first_question)  , Toast.LENGTH_SHORT).show()
         }
     }
 
-    //устанавливаем вопрос просмотренным и записываем ответ
-    private fun setAnswer(id:Int) {
-        val myData = DataProvider(App.getContext())
-        model.visited.add(model.currentIndex)
-        model.answers.add(id)
-        if (myData.getRightAnswerIdForQuestion(model.currentIndex) == id) {
-            model.correctCount++
-        }
-    }
-
-    //просмотренный вопрос или нет
-    private fun isVisited(): Boolean {
-        return model.currentIndex in model.visited
-    }
-
+    //получает index выбранной радиокнопки
     private fun getRadioIndex(): Int {
         val checked:Int = binding.radioGroup.checkedRadioButtonId
         if (checked > -1) {
@@ -123,11 +109,12 @@ class QuizzScreen : Fragment() {
 
     //если вопрос уже посещали и соответсвенно отвечали, то не надо в нем тыкать в радио кнопки!
     private fun checkRadioStatus() {
-        if (isVisited()) {
-           Toast.makeText(App.getContext(),resources.getText(R.string.answer_is_exists)  , Toast.LENGTH_SHORT).show()
+        if (model.isVisited()) {
+           Toast.makeText(this.context,resources.getText(R.string.answer_is_exists)  , Toast.LENGTH_SHORT).show()
         }
     }
 
+    //установка кнопок, если был дан ответ, то он будет включен
     private fun setRadioState(id: Int) {
         when (id) {
             0 -> binding.r0.isChecked = true
@@ -140,29 +127,28 @@ class QuizzScreen : Fragment() {
 
     //вызывается для установки значений вопроса и подсветки вариантов ответа, если он был дан
     private fun setup(id:Int) {
-        val myData = DataProvider(App.getContext())
         binding.radioGroup.clearCheck()
-        questionText.text = myData.getQuestion(id)
-        val answers = myData.getAnswersForQuestion(id)
+        questionText.text = model.getQuestion(id)
+        val answers = model.getAnswers(id)
         binding.r0.text = answers[0].text
         binding.r1.text = answers[1].text
         binding.r2.text = answers[2].text
         binding.r3.text = answers[3].text
-        progressText.text = (model.currentIndex+1).toString() + " / " + myData.getDataCount().toString()
-        if (isVisited()) {
-            setRadioState(model.answers[model.currentIndex])
-        }
+        progressText.text = model.getProgress()
+        if (model.isVisited()) {
+           setRadioState(model.getCurrentAnswerId())
+       }
    }
 
 
     //сброс квиза на начало
     private fun resetQuizz() {
         model.clear()
-        setup(model.currentIndex)
+        setup(model.getCurrentStep())
     }
 
     private fun showResult() {
-        listener.changeFragment(model.correctCount)
+        listener.changeFragment(model.getScores())
     }
 
 }

@@ -2,7 +2,6 @@ package ru.fastly.quizz
 
 
 import android.os.Bundle
-import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import ru.fastly.quizz.databinding.ActivityMainBinding
 
@@ -16,7 +15,7 @@ class MainActivity : AppCompatActivity(), QuizzScreen.OnFragmentCallAction,
         //remove the toolbar
         try {
             supportActionBar?.hide()
-        } catch (e: NullPointerException){
+        } catch (_: NullPointerException){
 
         }
 
@@ -25,16 +24,16 @@ class MainActivity : AppCompatActivity(), QuizzScreen.OnFragmentCallAction,
     }
 
     override fun changeFragment(count: Int) {
-        val resultFragment: ResultFragmentScreen = ResultFragmentScreen()
-        var args: Bundle = Bundle()
+        val resultFragment = ResultFragmentScreen()
+        val args = Bundle()
         args.putInt("RIGHT_COUNT", count)
         resultFragment.arguments = args
-        val fm = supportFragmentManager.beginTransaction().replace(R.id.myScreen, resultFragment).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.myScreen, resultFragment).commit()
     }
 
     override fun restart() {
-        val quizzFragment: QuizzScreen = QuizzScreen()
-        val fm = supportFragmentManager.beginTransaction().replace(R.id.myScreen, quizzFragment).commit()
+        val quizzFragment = QuizzScreen()
+        supportFragmentManager.beginTransaction().replace(R.id.myScreen, quizzFragment).commit()
     }
 
 

@@ -52,4 +52,5 @@ dependencies {
     // added fro ViewModel using in project
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
 
+
 }
