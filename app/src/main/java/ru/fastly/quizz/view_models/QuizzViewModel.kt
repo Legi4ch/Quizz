@@ -1,7 +1,7 @@
 package ru.fastly.quizz.view_models
 
 import androidx.lifecycle.ViewModel
-import ru.fastly.quizz.models.Answer
+import ru.fastly.quizz.data.Answer
 import ru.fastly.quizz.utils.App
 
 class QuizzViewModel: ViewModel() {

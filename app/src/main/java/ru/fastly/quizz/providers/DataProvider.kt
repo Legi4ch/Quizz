@@ -2,8 +2,8 @@ package ru.fastly.quizz.providers
 
 import android.content.Context
 import com.google.gson.Gson
-import ru.fastly.quizz.models.Answer
-import ru.fastly.quizz.models.QuizzData
+import ru.fastly.quizz.data.Answer
+import ru.fastly.quizz.data.QuizzData
 import ru.fastly.quizz.utils.Params
 import java.io.InputStream
 

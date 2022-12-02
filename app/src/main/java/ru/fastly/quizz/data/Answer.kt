@@ -1,4 +1,4 @@
-package ru.fastly.quizz.models
+package ru.fastly.quizz.data
 
 data class Answer(
     val id: Int,

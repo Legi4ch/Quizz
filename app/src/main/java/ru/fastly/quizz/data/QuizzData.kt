@@ -1,3 +1,3 @@
-package ru.fastly.quizz.models
+package ru.fastly.quizz.data
 
 class QuizzData : ArrayList<QuizzDataItem>()
