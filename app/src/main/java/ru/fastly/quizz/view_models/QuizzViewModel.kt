@@ -2,14 +2,14 @@ package ru.fastly.quizz.view_models
 
 import androidx.lifecycle.ViewModel
 import ru.fastly.quizz.data.Answer
-import ru.fastly.quizz.utils.App
+import ru.fastly.quizz.App
 
 class QuizzViewModel: ViewModel() {
 
     private var currentIndex: Int = 0
     private var correctCount: Int = 0
-    private var answers: MutableList<Int> = mutableListOf() //ответы на вопросы
-    private var visited: MutableList<Int> = mutableListOf() //вопросы на которые уже были даны ответы
+    private var answers: MutableList<Int> = mutableListOf() //индексы данных ответов
+    private var visited: MutableList<Int> = mutableListOf() //вопросы которые посмотрели (и ответили)
 
 
     fun clear() {

@@ -1,8 +1,9 @@
-package ru.fastly.quizz
+package ru.fastly.quizz.ui
 
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import ru.fastly.quizz.R
 import ru.fastly.quizz.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity(), QuizzScreen.OnFragmentCallAction,

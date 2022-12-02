@@ -1,4 +1,4 @@
-package ru.fastly.quizz
+package ru.fastly.quizz.ui
 
 import android.content.Context
 import android.content.Intent
@@ -7,8 +7,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ru.fastly.quizz.R
 import ru.fastly.quizz.databinding.FragmentResultScreenBinding
-import ru.fastly.quizz.utils.App
+import ru.fastly.quizz.App
 import ru.fastly.quizz.utils.Utils
 import kotlin.system.exitProcess
 

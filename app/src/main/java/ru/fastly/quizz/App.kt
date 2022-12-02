@@ -5,7 +5,7 @@
 * в манифесте нужно указать android:name = .App
 * Также здесь хранится объект данных для доступа к нему из ViewModel
 */
-package ru.fastly.quizz.utils
+package ru.fastly.quizz
 
 import android.app.Application
 import android.content.Context

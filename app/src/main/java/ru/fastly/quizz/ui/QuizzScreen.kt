@@ -1,4 +1,4 @@
-package ru.fastly.quizz
+package ru.fastly.quizz.ui
 
 import android.content.Context
 import android.os.Bundle
@@ -11,6 +11,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import ru.fastly.quizz.R
 import ru.fastly.quizz.databinding.FragmentQuizzScreenBinding
 import ru.fastly.quizz.view_models.QuizzViewModel
 
