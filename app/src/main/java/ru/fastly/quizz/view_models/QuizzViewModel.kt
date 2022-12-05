@@ -3,8 +3,10 @@ package ru.fastly.quizz.view_models
 import androidx.lifecycle.ViewModel
 import ru.fastly.quizz.data.Answer
 import ru.fastly.quizz.App
+import ru.fastly.quizz.App.Companion.dataset
+import ru.fastly.quizz.providers.DataProvider
 
-class QuizzViewModel: ViewModel() {
+class QuizzViewModel(dataset: DataProvider) : ViewModel() {
 
     private var currentIndex: Int = 0
     private var correctCount: Int = 0
@@ -13,10 +15,13 @@ class QuizzViewModel: ViewModel() {
 
 
     fun clear() {
+
         currentIndex = 0
         correctCount = 0
         answers = mutableListOf()
         visited = mutableListOf()
+
+
     }
 
     //просмотренный вопрос или нет
@@ -38,7 +43,7 @@ class QuizzViewModel: ViewModel() {
     }
 
     private fun getDataCount(): Int {
-        return App.dataset.getDataCount()
+        return dataset.getDataCount()
     }
 
     //проверка на правильный ответ
@@ -55,11 +60,11 @@ class QuizzViewModel: ViewModel() {
     }
 
     fun getQuestion(id:Int): String {
-        return App.dataset.getQuestion(id)
+        return dataset.getQuestion(id)
     }
 
     fun getAnswers(id: Int): List<Answer> {
-        return  App.dataset.getAnswersForQuestion(id)
+        return  dataset.getAnswersForQuestion(id)
     }
 
     fun getProgress():String {
@@ -82,3 +87,4 @@ class QuizzViewModel: ViewModel() {
         return currentIndex
     }
 }
+

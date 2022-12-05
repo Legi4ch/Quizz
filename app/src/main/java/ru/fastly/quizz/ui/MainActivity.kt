@@ -3,8 +3,10 @@ package ru.fastly.quizz.ui
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
 import ru.fastly.quizz.R
 import ru.fastly.quizz.databinding.ActivityMainBinding
+
 
 class MainActivity : AppCompatActivity(), QuizzScreen.OnFragmentCallAction,
     ResultFragmentScreen.OnQuizzRestartAction {
@@ -12,7 +14,6 @@ class MainActivity : AppCompatActivity(), QuizzScreen.OnFragmentCallAction,
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         //remove the toolbar
         try {
             supportActionBar?.hide()

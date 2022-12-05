@@ -9,12 +9,15 @@ import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.TextView
 import android.widget.Toast
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import ru.fastly.quizz.App
+//import androidx.lifecycle.ViewModelProviders
 import ru.fastly.quizz.R
 import ru.fastly.quizz.databinding.FragmentQuizzScreenBinding
 import ru.fastly.quizz.view_models.QuizzViewModel
-
+import ru.fastly.quizz.view_models.QuizzViewModelFactory
 
 
 class QuizzScreen : Fragment() {
@@ -27,6 +30,7 @@ class QuizzScreen : Fragment() {
     private val binding get() = _binding!!
     private lateinit var provider: ViewModelProvider
     private val model get() = provider.get(QuizzViewModel::class.java)
+
 
 
     private lateinit var questionText: TextView
@@ -52,7 +56,7 @@ class QuizzScreen : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentQuizzScreenBinding.inflate(inflater, container, false)
-        provider = ViewModelProviders.of(this)
+        provider = ViewModelProviders.of(this, QuizzViewModelFactory(App.dataset))
         return binding.root
     }
 
