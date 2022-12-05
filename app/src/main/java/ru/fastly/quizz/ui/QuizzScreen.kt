@@ -83,12 +83,10 @@ class QuizzScreen : Fragment() {
     private fun next() {
         if (model.isVisited()) {
             //ответ не требуется, уже был просмотр и соответственно ответ
-            model.stepForward()
+            model.stepForward(getRadioIndex())
         } else if (!model.isLastQuestion() && getRadioIndex() != -1) {
-            model.setAnswer(getRadioIndex())
-            model.stepForward()
+            model.stepForward(getRadioIndex())
         } else if (model.isLastQuestion() && getRadioIndex() != -1) {
-            model.setAnswer(getRadioIndex())
             // теперь надо показать результирующий фрагмент со всеми свистоперделками и сбрасываем квиз
             showResult()
             resetQuizz()

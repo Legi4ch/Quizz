@@ -54,7 +54,7 @@ class QuizzViewModel(dataset: DataProvider) : ViewModel() {
         return dataset.getRightAnswerIdForQuestion(currentIndex) == id
     }
 
-    fun setAnswer(id:Int) {
+    private fun setAnswer(id:Int) {
         visited.add(currentIndex)
         answers.add(id)
         if (isAnswerCorrect(id)) {
@@ -78,14 +78,19 @@ class QuizzViewModel(dataset: DataProvider) : ViewModel() {
         return correctCount
     }
 
-    fun stepForward() {
+    fun stepForward(id:Int) {
+        if (id > -1) {
+            setAnswer(id)
+        }
         currentIndex++
         state.value = currentIndex
     }
 
     fun stepBackward() {
-        currentIndex--
-        state.value = currentIndex
+        if(currentIndex > 0) {
+            currentIndex--
+            state.value = currentIndex
+        }
     }
 
     fun getCurrentStep(): Int {
