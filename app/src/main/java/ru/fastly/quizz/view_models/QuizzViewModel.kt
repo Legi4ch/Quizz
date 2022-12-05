@@ -1,5 +1,6 @@
 package ru.fastly.quizz.view_models
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.fastly.quizz.data.Answer
 import ru.fastly.quizz.App
@@ -8,6 +9,7 @@ import ru.fastly.quizz.providers.DataProvider
 
 class QuizzViewModel(dataset: DataProvider) : ViewModel() {
 
+    open var state = MutableLiveData<Int>(0)
     private var currentIndex: Int = 0
     private var correctCount: Int = 0
     private var answers: MutableList<Int> = mutableListOf() //индексы данных ответов
@@ -16,6 +18,7 @@ class QuizzViewModel(dataset: DataProvider) : ViewModel() {
 
     fun clear() {
 
+        state.value = 0
         currentIndex = 0
         correctCount = 0
         answers = mutableListOf()
@@ -48,7 +51,7 @@ class QuizzViewModel(dataset: DataProvider) : ViewModel() {
 
     //проверка на правильный ответ
     private fun isAnswerCorrect(id:Int):Boolean {
-        return App.dataset.getRightAnswerIdForQuestion(currentIndex) == id
+        return dataset.getRightAnswerIdForQuestion(currentIndex) == id
     }
 
     fun setAnswer(id:Int) {
@@ -77,10 +80,12 @@ class QuizzViewModel(dataset: DataProvider) : ViewModel() {
 
     fun stepForward() {
         currentIndex++
+        state.value = currentIndex
     }
 
     fun stepBackward() {
         currentIndex--
+        state.value = currentIndex
     }
 
     fun getCurrentStep(): Int {

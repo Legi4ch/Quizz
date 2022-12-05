@@ -2,6 +2,7 @@ package ru.fastly.quizz.ui
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -72,17 +73,20 @@ class QuizzScreen : Fragment() {
         binding.radioGroup.setOnCheckedChangeListener { _, _ -> checkRadioStatus()}
         binding.nextButton.setOnClickListener { next() }
         binding.backButton.setOnClickListener{ back() }
+
+        //подписываемся на изменение состояния в модели и рисуем их
+        model.state.observe(viewLifecycleOwner) {
+            setup(model.getCurrentStep())
+        }
    }
 
     private fun next() {
         if (model.isVisited()) {
             //ответ не требуется, уже был просмотр и соответственно ответ
             model.stepForward()
-            setup(model.getCurrentStep())
         } else if (!model.isLastQuestion() && getRadioIndex() != -1) {
             model.setAnswer(getRadioIndex())
             model.stepForward()
-            setup(model.getCurrentStep())
         } else if (model.isLastQuestion() && getRadioIndex() != -1) {
             model.setAnswer(getRadioIndex())
             // теперь надо показать результирующий фрагмент со всеми свистоперделками и сбрасываем квиз
@@ -96,7 +100,6 @@ class QuizzScreen : Fragment() {
     private fun back() {
         if (model.getCurrentStep() > 0) {
             model.stepBackward()
-            setup(model.getCurrentStep())
         } else {
             Toast.makeText(this.context,resources.getText(R.string.is_first_question)  , Toast.LENGTH_SHORT).show()
         }
